@@ -1,0 +1,10 @@
+.react-grid-item {
+    background-color: #ffffff;
+}
+.react-grid-item:hover {
+    border: 1px solid #05bdb8;
+}
+
+.react-grid-item > .react-resizable-handle.react-resizable-handle-se {
+    opacity: 0;
+}
