@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import auth from 'action/auth';
 
 import logo from 'container/layout/images/geri-logo.png';
 import loginBg from 'container/layout/images/login/login-bg.png';
@@ -8,14 +11,20 @@ function Login({ match, history, location }) {
     /**
      * 개인정보 업데이트
      */
-    let [personalInfo, updatePersonalInfo] = useState(["", ""]);
+    let [userInfo, updatePersonalInfo] = useState({username:"", password:""});
     function updateInfo(flag, value) {
-        let info = [...personalInfo];
+        let info = Object.assign({}, userInfo);
 
-        if ( flag === "id" ) info[0] = value;
-        else info[1] = value;
+        if ( flag === "id" ) info.username = value;
+        else info.password = value;
 
         updatePersonalInfo(info);
+    }
+
+    const dispatch = useDispatch();
+    function signIn(e) {
+        e.preventDefault();
+        dispatch(auth(userInfo));
     }
 
     return (
@@ -40,7 +49,7 @@ function Login({ match, history, location }) {
                                 <input type="checkbox" id="save-id"/><label htmlFor="save-id" className="save-id">아이디 저장</label>
                             </div>
                             <div className="btn-login-area">
-                                <button type="submit" className="btn btn-login">LOG IN</button>
+                                <button type="submit" onClick={signIn} className="btn btn-login">LOG IN</button>
                             </div>
                         </form>
                     </div>

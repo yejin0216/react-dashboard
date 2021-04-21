@@ -1,4 +1,3 @@
-import App from 'App';
 import Login from 'container/auth/Login';
 import Dashboards from 'container/dashboard/Dashboards'
 import Dashboard from 'container/dashboard/Dashboard'
@@ -9,7 +8,13 @@ const routes = [
   {
     path: "/",
     exact: true,
-    src: Dashboards
+    src: Dashboards,
+    routes: [
+      {
+        path: "/:dashboard_id",
+        src: Dashboard
+      }
+    ]
   },
   {
     path: "/auth",
@@ -24,8 +29,12 @@ const routes = [
     src: Bookmarks
   },
   {
-    path: "/list/:id",
-    src: Dashboards
+    path: "/guide",
+    src: Bookmarks
+  },
+  {
+    path: "/settings",
+    src: Bookmarks
   },
 ];
 
