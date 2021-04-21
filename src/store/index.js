@@ -9,7 +9,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import auth from 'reducer/auth'
 
 
-const middleware = [ thunk, logger ]
+const middleware = [ thunk ]
 
 let store = createStore(
   persistReducer({key:'root', storage, whitelist: ['auth']}, rootReducer),

@@ -21,7 +21,7 @@ function saveAuthentication(response) {
 function login(userInfo) {
   return (dispatch) => {
     return axios.post(`${HOST_DASHBOARD_API}/auth/`, userInfo)
-      .then(response => { dispatch(saveAuthentication(response)) })
+      .then(response => { dispatch(saveAuthentication(response)); })
       .catch(error => { console.log(error) });
   };
 }

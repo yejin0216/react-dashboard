@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import auth from 'action/auth';
 
 import logo from 'container/layout/images/geri-logo.png';
 import loginBg from 'container/layout/images/login/login-bg.png';
 
-function Login({ match, history, location }) {
+function Login() {
 
     /**
      * 개인정보 업데이트
@@ -22,9 +23,11 @@ function Login({ match, history, location }) {
     }
 
     const dispatch = useDispatch();
-    function signIn(e) {
+    const history = useHistory();
+    async function signIn(e) {
         e.preventDefault();
-        dispatch(auth(userInfo));
+        await dispatch(auth(userInfo));
+        history.push("/");
     }
 
     return (

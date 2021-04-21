@@ -1028,7 +1028,7 @@ label::before {
   flex-direction: column;
   margin-top: 0;
 }
-.gnb > li {
+.gnb > a > li {
   width: 100%;
   text-align: center;
   width: 55px;
@@ -1038,20 +1038,27 @@ label::before {
   background-repeat: no-repeat;
   color: #fff;
 }
-.gnb > li.logout {
+.gnb > a.a-logout {
+  position: absolute;
+  bottom: 0;
+  max-height: 240px;
+  width: 55px;
+  height: 55px;
+}
+.gnb > a > li.logout {
   position: absolute;
   bottom: 0;
   max-height: 240px;
 }
-.gnb > li > span {
+.gnb > a > li > span {
   /*position: relative;*/
   /*top: 50%;*/
   /*transform: translateY(-50%);*/
 }
-.gnb > li.logout span {
+.gnb > a > li.logout span {
   font-size: 24px;
 }
-.gnb > li > span > a {
+.gnb > a > li > span {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
@@ -1062,10 +1069,10 @@ label::before {
   background-repeat: no-repeat;
   color: #fff;
 }
-.gnb > li > span > a.active {
+.gnb > a.active {
   background-color: #05bdb8;
 }
-.gnb > li > span > a:hover {
+.gnb > a:hover {
   color: #fff !important;
   text-decoration: none;
   background-color: #05bdb8;

@@ -15,8 +15,6 @@ function Dashboards() {
     categories: state.categories
   }));
 
-  console.log(categories)
-
   return (
     <div className="wm-content">
       <Header breadcumb={["대시보드 목록","대시보드"]} />
