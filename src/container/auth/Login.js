@@ -24,10 +24,16 @@ function Login() {
 
     const dispatch = useDispatch();
     const history = useHistory();
+
+    /**
+     * 로그인
+     * @param e
+     * @returns {Promise<void>}
+     */
     async function signIn(e) {
         e.preventDefault();
         await dispatch(auth(userInfo));
-        history.push("/");
+        history.push("/"); //Home으로 이동
     }
 
     return (

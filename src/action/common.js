@@ -1,4 +1,4 @@
-import {HOST_OPENSERVICE_API, GET_CATEGORIES, HOST_DASHBOARD_API} from 'store/constants';
+import {GET_CATEGORIES, HOST_DASHBOARD_API} from 'store/constants';
 import axios from 'axios';
 
 /**

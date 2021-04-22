@@ -1,56 +1,25 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategories } from 'action/common';
+import { getDashboards } from 'action/dashboard';
+import store from 'store';
 
-import Header from 'component/Header';
+import Header from 'component/layout/Header';
+import Content from 'component/layout/Content';
+import ContentList from 'component/content/ContentList'
 
-function Dashboards() {
+function Dashboards(props) {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCategories());
+    dispatch(getDashboards('delYn=N'));
   }, []);
 
-  const categories = useSelector(state => ({
-    categories: state.categories
-  }));
+  const list = useSelector((store) => store.dashboards.list || [{}]);
 
   return (
-    <div className="wm-content">
-      <Header breadcumb={["대시보드 목록","대시보드"]} />
-      <div className="content-container">
-        <div className="content-area-top">
-          <button type="button" className="btn-add-obj"><span className="material-icons-outlined">add</span> 추가하기</button>
-        </div>
-        <div className="content-area mt20">
-          <ul className="dash-list">
-            <li className="list-wrap" data-link="link">
-              <div className="tit">
-                제목글체는 최대 몇자까지 들어가면 될까요? 나머지는 글자가 줄임말로 나와야할까요????
-              </div>
-              <div className="rt">
-                <div className="cat">
-                  스마트팜
-                </div>
-                <div className="div"><span></span></div>
-                <div className="name">
-                  admin222
-                </div>
-                <div className="div"><span></span></div>
-                <div className="date">
-                  2020.12.9
-                </div>
-                <div className="div trsp"><span></span></div>
-                <div className="btr">
-                  <button type="button" className="btn btn-view-detail">상세보기</button>
-                  <button type="button" className="btn btn-view-detail">삭제</button>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <Content topButtonTitle="추가하기">
+      <ContentList list={list} />
+    </Content>
   );
 }
 

@@ -1,6 +1,4 @@
-import actions from 'action';
-
-const { GET_DASHBOARDS } = actions.dashboard;
+import {GET_DASHBOARDS} from 'store/constants';
 
 const dashboard = (state, action) => {
   switch (action.type) {
@@ -16,10 +14,9 @@ const dashboard = (state, action) => {
 const dashboards = (state = [], action) => {
   switch (action.type) {
     case GET_DASHBOARDS:
-      return [
-        ...state,
-        dashboard(undefined, action)
-      ];
+      return {...state, list:action.response.data};
+    default:
+      return state;
   }
 }
 

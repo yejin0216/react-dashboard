@@ -1,16 +1,12 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import {useSelector} from "react-redux";
-import Sidebar from "../../component/Sidebar";
+import Sidebar from "../../component/sidebar/Sidebar";
+import ContentWrapper from "../../component/layout/ContentWrapper";
+import store from 'store';
 
 function PrivateRoute( { component: Component, ...rest } ) {
 
-  let isAuthenticated = false;
-
-  const auth = useSelector(state => state.auth);
-  if ( auth.access_token !== undefined ) {
-    isAuthenticated = true;
-  }
+  let isAuthenticated = store.getState().auth.access_token ? true : false;
 
   return (
     <Route
@@ -19,12 +15,9 @@ function PrivateRoute( { component: Component, ...rest } ) {
         isAuthenticated ? (
           <>
             <Sidebar {...props} />
-            <div className="wrapper wrapper-layout">
-              <div className="wm-container">
-                <div className="wm-space"></div>
-                <Component {...props} />
-              </div>
-            </div>
+            <ContentWrapper>
+              <Component {...props} />
+            </ContentWrapper>
           </>
         ) : (
           <Redirect to ={{pathname:'/auth', state:{from:props.location}}} />

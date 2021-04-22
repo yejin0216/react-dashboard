@@ -8,7 +8,7 @@ import axios from 'axios';
  */
 function saveAuthentication(response) {
   if ( !response.failCount || response.failCount === 0 ) {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.access_token}`; //inject to header
+    localStorage.setItem("access_token", response.data.access_token);
   }
   return {type:POST_AUTHENTICATION, response};
 }

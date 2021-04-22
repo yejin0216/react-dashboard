@@ -1,8 +1,5 @@
 import { HOST_DASHBOARD_API, GET_DASHBOARDS } from 'store/constants';
-
-function addDashboards(list) {
-  return { type: GET_DASHBOARDS, list };
-}
+import axios from 'axios.config';
 
 /**
  * 대시보드 목록 조회
@@ -11,12 +8,12 @@ function addDashboards(list) {
  */
 function getDashboards(queryParams) {
   return (dispatch) => {
-    return fetch(`${HOST_DASHBOARD_API}/dashboards?${queryParams}`)
-      .then(res => res.json())
-      .then(data => dispatch(addDashboards(data)))
+    return axios.get(`${HOST_DASHBOARD_API}/dashboards?${queryParams}`)
+      .then(response => { dispatch({ type:GET_DASHBOARDS, response }) })
+      .catch(error => { console.log(error) });
   };
 }
 
 export {
-  addDashboards
+  getDashboards
 }

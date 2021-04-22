@@ -5,7 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import reportWebVitals from './reportWebVitals';
 import App from 'App';
 import { Provider } from 'react-redux';
-import store from 'store'
+import store from 'store';
 import 'container/layout/normalize.css';
 import 'container/layout/common.css';
 import 'container/layout/styles.css';
@@ -13,7 +13,7 @@ import 'container/layout/styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {persistStore} from "redux-persist";
 
-let persistor = persistStore(store);
+const persistor = persistStore(store);
 
 ReactDOM.render(
   <React.StrictMode>

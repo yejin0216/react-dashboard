@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route, Redirect, NavLink} from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import PrivateRoute from "./container/auth/PrivateRoute";
 import Login from "./container/auth/Login";

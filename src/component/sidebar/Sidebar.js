@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink, useLocation} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 import SidebarItem from "./SidebarItem";
 
@@ -23,10 +23,11 @@ function Sidebar({match, location}) {
           menus.map((menu, index) => {
             return (
               <NavLink exact
-                       to={menu.path} key={index}
+                       key={index}
+                       to={menu.path}
                        isActive={(match) => {
                          if (!match) return;
-                         else if (match.path === menu.path) return true;
+                         else if (match.url === menu.path) return true;
                        }}
               >
                 <SidebarItem menu={menu} index={index} />
