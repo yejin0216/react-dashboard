@@ -1,4 +1,3 @@
-import Login from 'container/auth/Login';
 import Dashboards from 'container/dashboard/Dashboards'
 import Dashboard from 'container/dashboard/Dashboard'
 import Devices from 'container/manage/Devices';
@@ -8,34 +7,34 @@ const routes = [
   {
     path: "/",
     exact: true,
-    src: Dashboards,
+    source: Dashboards,
     routes: [
       {
         path: "/:dashboard_id",
-        src: Dashboard
+        source: Dashboard
       }
     ]
   },
   {
-    path: "/auth",
-    src: Login
-  },
-  {
     path: "/devices",
-    src: Devices
+    source: Devices
   },
   {
     path: "/bookmarks",
-    src: Bookmarks
+    source: Bookmarks
   },
   {
     path: "/guide",
-    src: Bookmarks
+    source: Bookmarks
   },
   {
     path: "/settings",
-    src: Bookmarks
+    source: Bookmarks
   },
+  // {
+  //   path: "*",
+  //   source: NoMatch
+  // },
 ];
 
 export default routes;

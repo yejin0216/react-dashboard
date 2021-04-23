@@ -7,9 +7,14 @@ import axios from 'axios';
  * @returns {{response: *, type: string}}
  */
 function saveAuthentication(response) {
-  if ( !response.failCount || response.failCount === 0 ) {
+  const {
+    response: failCount
+  } = response;
+
+  if ( !failCount ) {
     localStorage.setItem("access_token", response.data.access_token);
   }
+
   return {type:POST_AUTHENTICATION, response};
 }
 
