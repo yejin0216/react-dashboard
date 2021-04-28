@@ -1,5 +1,5 @@
 import { AUTH_AXIOS } from 'axios.config';
-import { HOST_DEVICE_WIDGETS_API, HOST_DEVICE_API, HOST_DEVICE_MODEL_API, HOST_OPENSERVICE_API } from 'store/constants';
+import { HOST_DEVICE_WIDGETS_API, HOST_DEVICE_API, HOST_DEVICE_MODEL_API, HOST_OPENSERVICE_API } from './constants';
 
 // 디바이스 속성 조회
 export const getDeviceAttributes = async (widgetId, isLocation) => {

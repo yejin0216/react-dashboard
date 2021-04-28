@@ -1,5 +1,5 @@
 import { AUTH_AXIOS } from 'axios.config';
-import {HOST_RESOURCE_WIDGETS_API, HOST_DEVICE_LOGS_API, HOST_DEVICE_API} from "../store/constants";
+import {HOST_RESOURCE_WIDGETS_API, HOST_DEVICE_LOGS_API, HOST_DEVICE_API} from './constants';
 
 // 리소스 속성 조회
 export const getResourceAttributes = async (widgetId) => {

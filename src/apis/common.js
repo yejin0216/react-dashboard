@@ -1,5 +1,5 @@
 import { AUTH_AXIOS } from 'axios.config';
-import { HOST_CODES_API, HOST_OPENSERVICE_API } from '../store/constants';
+import { HOST_CODES_API, HOST_OPENSERVICE_API } from './constants';
 
 // Open Service 공통코드 조회
 export const getOpenCommonCodes = async (codeId) => {

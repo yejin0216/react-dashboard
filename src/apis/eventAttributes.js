@@ -1,5 +1,5 @@
 import { AUTH_AXIOS } from 'axios.config';
-import { HOST_EVENT_WIDGETS_API, HOST_EVENT_API } from "../store/constants";
+import { HOST_EVENT_WIDGETS_API, HOST_EVENT_API } from './constants';
 
 // 이벤트 속성 조회
 export const getEventAttributes = async (widgetId) => {

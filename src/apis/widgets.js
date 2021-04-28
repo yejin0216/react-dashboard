@@ -1,5 +1,5 @@
 import { AUTH_AXIOS } from 'axios.config';
-import { HOST_WIDGETS_API } from 'store/constants';
+import { HOST_WIDGETS_API } from './constants';
 
 // 위젯 템플릿 조회
 export const getWidgetTemplates = async () => {

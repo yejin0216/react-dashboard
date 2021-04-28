@@ -1,5 +1,5 @@
 import { AUTH_AXIOS } from 'axios.config';
-import { HOST_DASHBOARDS_API } from 'store/constants';
+import { HOST_DASHBOARDS_API } from './constants';
 
 // 대시보드 목록 조회
 export const getDashboards = async (queryParams) => {
