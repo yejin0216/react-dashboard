@@ -24,24 +24,8 @@ export const reducerUtils = {
   error: error => ({
     loading: false,
     response: null,
-    error: error
+    error
   })
-};
-
-export const asyncResponseType = {
-  default: (type) => ({
-    type: type
-  }),
-  success: (type, data) => ({
-    type: `${type}_SUCCESS`,
-    response: data,
-    error: null
-  }),
-  error: (type, error) => ({
-    type: `${type}_ERROR`,
-    response: null,
-    error: error
-  }),
 };
 
 // 비동기 관련 액션들을 처리하는 리듀서를 만들어줍니다.
