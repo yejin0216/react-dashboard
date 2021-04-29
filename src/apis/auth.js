@@ -10,4 +10,3 @@ export const login = async (userInfo) => {
 export const logout = () => {
   localStorage.clear();
 }
-
