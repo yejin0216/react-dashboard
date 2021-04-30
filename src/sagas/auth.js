@@ -2,7 +2,7 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 import * as authApi from 'apis/auth';
 import { LOGIN, LOGOUT } from 'modules/utils/actionType';
 import * as actions from 'modules/auth';
-import history from 'history';
+import history from '../history';
 
 // 로그인
 function* loginSaga({ payload }) {
@@ -11,7 +11,7 @@ function* loginSaga({ payload }) {
     const { data } = yield call(authApi.login, payload);
     const { failCount } = data;
 
-    if ( failCount || failCount > 0 ) {
+    if (failCount || failCount > 0) {
       // 로그인 실패 횟수 카운트
       // 5회 이상 실패할 경우 비밀번호 초기화 됨
       yield put(actions.loginErrorAction('INVALID_USER'));
@@ -25,7 +25,7 @@ function* loginSaga({ payload }) {
   } catch (e) {
     yield put(actions.loginErrorAction(e));
   }
-};
+}
 
 // 로그아웃
 function* logoutSaga() {
@@ -39,4 +39,4 @@ export default function* authSaga() {
   // 로그인, 로그아웃은 디바운스로 처리
   yield takeLatest(LOGIN, loginSaga);
   yield takeLatest(LOGOUT, logoutSaga);
-};
+}

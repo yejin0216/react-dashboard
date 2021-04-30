@@ -5,27 +5,27 @@ export const reducerUtils = {
   initial: (initialDate = null) => ({
     loading: false,
     response: initialDate,
-    error: null
+    error: null,
   }),
   // 로딩중 상태. prevState의 경우엔 기본값은 null 이지만
   // 따로 값을 지정하면 null 로 바꾸지 않고 다른 값을 유지시킬 수 있습니다.
-  loading: (prevState = null) =>({
+  loading: (prevState = null) => ({
     loading: true,
     response: prevState,
-    error: null
+    error: null,
   }),
   // 성공 상태
-  success: payload => ({
+  success: (payload) => ({
     loading: false,
     response: payload,
-    error: null
+    error: null,
   }),
   // 실패 상태
-  error: error => ({
+  error: (error) => ({
     loading: false,
     response: null,
-    error
-  })
+    error,
+  }),
 };
 
 // 비동기 관련 액션들을 처리하는 리듀서를 만들어줍니다.
@@ -37,20 +37,20 @@ export const handleAsyncActions = (type, key) => {
       case type:
         return {
           ...state,
-          [key]: reducerUtils.loading()
+          [key]: reducerUtils.loading(),
         };
       case SUCCESS:
         return {
           ...state,
-          [key]: reducerUtils.success(action.payload)
+          [key]: reducerUtils.success(action.payload),
         };
       case ERROR:
         return {
           ...state,
-          [key]: reducerUtils.error(action.payload)
+          [key]: reducerUtils.error(action.payload),
         };
       default:
         return state;
     }
-  }
-}
+  };
+};

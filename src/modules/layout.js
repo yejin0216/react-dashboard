@@ -1,11 +1,19 @@
-import {SET_BREADCUMBS} from 'store/constants'
+import { GET_BREADCRUMBS } from 'modules/utils/actionType';
 
-function setBreadcumbs(breadcumbs) {
-  return (dispatch) => {
-    return dispatch({type:SET_BREADCUMBS, breadcumbs:breadcumbs})
-  }
+// breadcrumb 받기
+export const getBreadcrumbs = path => {
+  return {type: GET_BREADCRUMBS, payload: path};
 }
 
-export {
-  setBreadcumbs
-};
+// initial state
+const initialState = null;
+
+// reducer
+export default function layoutReducer(state = initialState, action) {
+  switch (action.type) {
+    case GET_BREADCRUMBS:
+      return { ...state, response: action.payload };
+    default:
+      return state;
+  }
+}

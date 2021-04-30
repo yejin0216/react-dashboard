@@ -1,10 +1,10 @@
 // 로그아웃
-export const LOGOUT = "LOGOUT";
+export const LOGOUT = 'LOGOUT';
 
 // 로그인
-export const LOGIN = "POST_LOGIN";
-export const LOGIN_SUCCESS = "POST_LOGIN_SUCCESS";
-export const LOGIN_FAIL = "POST_LOGIN_FAIL";
+export const LOGIN = 'POST_LOGIN';
+export const LOGIN_SUCCESS = 'POST_LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'POST_LOGIN_FAIL';
 
-
-
+// Layout
+export const GET_BREADCRUMBS = 'GET_BREADCRUMBS';

@@ -1,15 +1,24 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-
-import PrivateRoute from "./container/auth/PrivateRoute";
-import Login from "./container/auth/Login";
+import routes from 'routers';
+import PrivateRoute from 'containers/auth/PrivateRoute';
+import LoginPage from './pages/auth/LoginPage';
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
       <Switch>
-        <PrivateRoute />
-        <Route path="/auth" component={Login} />
+        {routes.map((route, index) => {
+          return (
+            <PrivateRoute
+              key={index.toString()}
+              exact
+              path={route.path}
+              component={route.source}
+            />
+          );
+        })}
+        <Route path='/auth' component={LoginPage} />
       </Switch>
     </div>
   );
