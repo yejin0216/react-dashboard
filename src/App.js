@@ -1,12 +1,12 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import routes from 'routers';
 import PrivateRoute from 'containers/auth/PrivateRoute';
 import LoginPage from './pages/auth/LoginPage';
 
 function App() {
   return (
-    <div className='App'>
+    <div className="App">
       <Switch>
         {routes.map((route, index) => {
           return (
@@ -18,7 +18,9 @@ function App() {
             />
           );
         })}
-        <Route path='/auth' component={LoginPage} />
+        <Route path="/" exact render={() => <Redirect to="/auth" />} />
+        {/* <Route path="**" component={PageNotFound}} /> */}
+        <Route path="/auth" component={LoginPage} />
       </Switch>
     </div>
   );

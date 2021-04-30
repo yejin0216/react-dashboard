@@ -4,7 +4,7 @@ import { Router } from 'react-router-dom';
 import App from 'App';
 import { Provider } from 'react-redux';
 import store from 'stores';
-import history from './history';
+import history from 'stores/history';
 import reportWebVitals from './reportWebVitals';
 
 import 'containers/layout/normalize.css';
@@ -14,11 +14,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router history={history}>
-      <Provider store={store}>
+    <Provider store={store}>
+      <Router history={history}>
         <App />
-      </Provider>
-    </Router>
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

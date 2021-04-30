@@ -1,5 +1,5 @@
 import { handleAsyncActions } from './utils/asyncUtils';
-import { LOGIN, LOGOUT, LOGIN_SUCCESS, LOGIN_FAIL } from './utils/actionType';
+import { LOGIN, LOGOUT, LOGIN_SUCCESS, LOGIN_ERROR } from './utils/authType';
 
 // action
 // 로그인
@@ -12,7 +12,7 @@ export const loginSuccessAction = response => {
 };
 // 로그인 실패
 export const loginErrorAction = error => {
-  return { type: LOGIN_FAIL, error };
+  return { type: LOGIN_ERROR, error };
 };
 // 로그아웃
 export const logoutAction = () => {
@@ -27,7 +27,7 @@ export default function authReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN:
     case LOGIN_SUCCESS:
-    case LOGIN_FAIL:
+    case LOGIN_ERROR:
       return handleAsyncActions(LOGIN, 'auth')(state, action);
     default:
       return state;

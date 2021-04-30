@@ -1,14 +1,16 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable dot-notation */
 import axios from 'axios';
 
-export const AUTH_AXIOS = axios.create();
+const AUTH_AXIOS = axios.create();
 
 AUTH_AXIOS.interceptors.request.use(
   function (config) {
     if (localStorage.getItem('access_token')) {
       // token 정보가 있을 경우에만 세팅한다.
-      axios.defaults.headers.common[
-        'Authorization'
-      ] = `Bearer ${localStorage.getItem('access_token')}`;
+      config.headers['Authorization'] = `Bearer ${localStorage.getItem(
+        'access_token',
+      )}`;
     }
     return config;
   },
@@ -18,18 +20,16 @@ AUTH_AXIOS.interceptors.request.use(
   },
 );
 
-export const AUTH_TARGET_AXIOS = axios.create();
+const AUTH_TARGET_AXIOS = axios.create();
 
 AUTH_TARGET_AXIOS.interceptors.request.use(
   function (config) {
     if (localStorage.getItem('access_token')) {
       // token 정보가 있을 경우에만 세팅한다.
-      axios.defaults.headers.common[
-        'Authorization'
-      ] = `Bearer ${localStorage.getItem('access_token')}`;
-      axios.defaults.headers.common['X-KT-IM-TARGET-ID'] = localStorage.getItem(
-        'target_ids',
-      );
+      config.headers['Authorization'] = `Bearer ${localStorage.getItem(
+        'access_token',
+      )}`;
+      config.headers['X-KT-IM-TARGET-ID'] = localStorage.getItem('target_ids');
     }
     return config;
   },
@@ -38,3 +38,5 @@ AUTH_TARGET_AXIOS.interceptors.request.use(
     return Promise.reject(error);
   },
 );
+
+export { AUTH_AXIOS, AUTH_TARGET_AXIOS };

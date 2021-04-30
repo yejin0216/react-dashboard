@@ -1,14 +1,15 @@
 import DashboardsPage from 'pages/dashboard/DashboardsPage';
+import DashboardPage from 'pages/dashboard/DashboardPage';
 
 const routes = [
   {
-    path: '/',
+    path: '/dashboards',
     exact: true,
     source: DashboardsPage,
     routes: [
       {
-        path: '/:dashboard_id',
-        source: DashboardsPage,
+        path: '/dashboards/:dashboard_id',
+        source: DashboardPage,
       },
     ],
   },
@@ -28,10 +29,6 @@ const routes = [
     path: '/settings',
     source: DashboardsPage,
   },
-  // {
-  //   path: "*",
-  //   source: NoMatch
-  // },
 ];
 
 export default routes;

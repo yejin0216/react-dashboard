@@ -15,13 +15,13 @@ export const reducerUtils = {
     error: null,
   }),
   // 성공 상태
-  success: (payload) => ({
+  success: payload => ({
     loading: false,
     response: payload,
     error: null,
   }),
   // 실패 상태
-  error: (error) => ({
+  error: error => ({
     loading: false,
     response: null,
     error,
@@ -47,7 +47,7 @@ export const handleAsyncActions = (type, key) => {
       case ERROR:
         return {
           ...state,
-          [key]: reducerUtils.error(action.payload),
+          [key]: reducerUtils.error(action.error),
         };
       default:
         return state;

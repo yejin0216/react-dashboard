@@ -10,7 +10,7 @@ function Login() {
   function updateUserInput(flag, value) {
     const info = { ...user };
 
-    if (flag === 'id') {
+    if (flag === 'username') {
       info.username = value;
     } else {
       info.password = value;
@@ -40,23 +40,21 @@ function Login() {
                 <input
                   type="text"
                   className="input-login id"
-                  onChange={(e) => {
-                    updateUserInput('userName', e.target.value);
+                  onChange={e => {
+                    updateUserInput('username', e.target.value);
                   }}
                   placeholder="ID"
                 />
-                <div className="alert-box">에러메시지가 들어갑니다.</div>
               </div>
               <div className="login-wrap">
                 <input
                   type="password"
                   className="input-login pd"
-                  onChange={(e) => {
+                  onChange={e => {
                     updateUserInput('password', e.target.value);
                   }}
                   placeholder="Password"
                 />
-                <div className="alert-box">에러메시지가 들어갑니다.</div>
               </div>
               <div className="login-wrap s-i">
                 <label htmlFor="save-id" className="save-id">

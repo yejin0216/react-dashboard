@@ -1,13 +1,15 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
+import ContentWrapper from 'components/contents/ContentWrapper';
+import Sidebar from 'containers/layout/Sidebar';
 
 // 토큰 만료일자 검증
-const checkTokenExpiration = (jwtToken) => {
+const checkTokenExpiration = jwtToken => {
   if (!jwtToken || jwtToken === null) {
-    return false;
+    return true;
   }
   const expirationDate =
-    JSON.parse(atob(jwtToken.split('.')[1])) * 1000 || null;
+    JSON.parse(atob(jwtToken.split('.')[1])).exp * 1000 || null;
 
   return Date.now() > expirationDate;
 };
@@ -23,16 +25,16 @@ function PrivateRoute({ component: Component, ...rest }) {
   return (
     <Route
       {...rest}
-      render={(props) =>
+      render={props =>
         isExpired ? (
           <Redirect
             to={{ pathname: '/auth', state: { from: props.location } }}
           />
         ) : (
-          // <ContentWrapper>
-          //   <Sidebar {...props} />
-          <Component {...props} />
-          // </ContentWrapper>
+          <ContentWrapper>
+            <Sidebar {...props} />
+            <Component {...props} />
+          </ContentWrapper>
         )
       }
     />
