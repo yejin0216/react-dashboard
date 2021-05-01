@@ -1,9 +1,17 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable dot-notation */
 import axios from 'axios';
+import { cacheAdapterEnhancer } from 'axios-extensions';
 
-const AUTH_AXIOS = axios.create();
-
+// access token을 intercept하는 axios 객체이다.
+const AUTH_AXIOS = axios.create({
+  headers: { 'Cache-Control': 'no-cache' },
+  // disable the default cache and set the cache flag
+  adapter: cacheAdapterEnhancer(axios.defaults.adapter, {
+    enabledByDefault: false,
+    cacheFlag: 'useCache',
+  }),
+});
 AUTH_AXIOS.interceptors.request.use(
   function (config) {
     if (localStorage.getItem('access_token')) {
@@ -20,8 +28,15 @@ AUTH_AXIOS.interceptors.request.use(
   },
 );
 
-const AUTH_TARGET_AXIOS = axios.create();
-
+// access token, service tagets을 intercept하는 axios 객체이다.
+const AUTH_TARGET_AXIOS = axios.create({
+  headers: { 'Cache-Control': 'no-cache' },
+  // disable the default cache and set the cache flag
+  adapter: cacheAdapterEnhancer(axios.defaults.adapter, {
+    enabledByDefault: false,
+    cacheFlag: 'useCache',
+  }),
+});
 AUTH_TARGET_AXIOS.interceptors.request.use(
   function (config) {
     if (localStorage.getItem('access_token')) {
