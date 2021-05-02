@@ -1191,9 +1191,9 @@ label::before {
     position: relative;
   }
 }
-/*.dash-list li.list-wrap:hover {*/
-/*  background-color: #f6f8fa;*/
-/*}*/
+.dash-list li.list-wrap:hover {
+  background-color: #f6f8fa;
+}
 .dash-list li.list-wrap .tit {
   font-size: 20px;
   color: #333333;

@@ -31,8 +31,8 @@ function PrivateRoute({ component: Component, ...rest }) {
             to={{ pathname: '/auth', state: { from: props.location } }}
           />
         ) : (
-          <ContentWrapper>
-            <Sidebar {...props} />
+          <ContentWrapper breadcrumbs={rest.breadcrumbs}>
+            <Sidebar />
             <Component {...props} />
           </ContentWrapper>
         )

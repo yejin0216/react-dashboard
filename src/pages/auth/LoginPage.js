@@ -7,17 +7,6 @@ import { loginAction } from 'modules/auth';
 function Login() {
   // username, password 업데이트
   const [user, updateUser] = useState({ username: '', password: '' });
-  function updateUserInput(flag, value) {
-    const info = { ...user };
-
-    if (flag === 'username') {
-      info.username = value;
-    } else {
-      info.password = value;
-    }
-
-    updateUser(info);
-  }
 
   // 로그인 디스패치
   const dispatch = useDispatch();
@@ -40,9 +29,9 @@ function Login() {
                 <input
                   type="text"
                   className="input-login id"
-                  onChange={e => {
-                    updateUserInput('username', e.target.value);
-                  }}
+                  onChange={e =>
+                    updateUser({ ...user, username: e.target.value })
+                  }
                   placeholder="ID"
                 />
               </div>
@@ -50,9 +39,9 @@ function Login() {
                 <input
                   type="password"
                   className="input-login pd"
-                  onChange={e => {
-                    updateUserInput('password', e.target.value);
-                  }}
+                  onChange={e =>
+                    updateUser({ ...user, password: e.target.value })
+                  }
                   placeholder="Password"
                 />
               </div>

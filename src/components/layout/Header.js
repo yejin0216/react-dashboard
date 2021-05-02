@@ -9,7 +9,7 @@ function Header({ breadcrumb }) {
           <li>
             <a href="#none">{breadcrumb[1]}</a>
           </li>
-          <li className="sep" />
+          <li className="sep">{'>'}</li>
           <li>
             <a href="#none">{breadcrumb[0]}</a>
           </li>

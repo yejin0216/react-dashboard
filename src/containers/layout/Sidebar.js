@@ -6,11 +6,11 @@ import SidebarItem from 'components/layout/SidebarItem';
 function Sidebar() {
   // 메뉴
   const menus = [
-    { name: 'dashboard', path: '/dashboards' },
-    { name: 'book', path: '/bookmarks' },
-    { name: 'developer_board', path: '/devices' },
-    { name: 'info', path: '/guide' },
-    { name: 'settings', path: '/settings' },
+    { name: '대시보드 목록', icon: 'dashboard', path: '/dashboards' },
+    { name: '즐겨찾기', icon: 'book', path: '/bookmarks' },
+    { name: '나의 자산', icon: 'developer_board', path: '/devices' },
+    { name: '이용 가이드', icon: 'info', path: '/guide' },
+    { name: '설정', icon: 'settings', path: '/settings' },
   ];
   // 로그아웃
   function signOut() {
@@ -23,7 +23,7 @@ function Sidebar() {
           return (
             <NavLink
               exact
-              key={index.toString()}
+              key={menu.name}
               to={menu.path}
               isActive={match => {
                 if (!match) return false;

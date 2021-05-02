@@ -8,17 +8,18 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        {routes.map((route, index) => {
+        {routes.map(route => {
           return (
             <PrivateRoute
-              key={index.toString()}
               exact
+              key={route.path}
               path={route.path}
               component={route.source}
+              breadcrumbs={route.breadcrumbs}
             />
           );
         })}
-        <Route path="/" exact render={() => <Redirect to="/auth" />} />
+        <Route exact path="/" render={() => <Redirect to="/auth" />} />
         {/* <Route path="**" component={PageNotFound}} /> */}
         <Route path="/auth" component={LoginPage} />
       </Switch>

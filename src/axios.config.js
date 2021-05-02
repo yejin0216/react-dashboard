@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 /* eslint-disable no-param-reassign */
 /* eslint-disable dot-notation */
 import axios from 'axios';
