@@ -2187,26 +2187,36 @@ label::before {
   border: 1px solid #05bdb8;
 }
 
-.popup-wrapper {
-  display: none;
-  background-color: #fff;
-  position: fixed;
-  width: 660px;
-  height: 100%;
+.custom-modal {
+  position: fixed !important;
   top: 0;
   right: 0;
-  z-index: 310;
-  box-shadow: -5px 0px 10px 0px rgba(50, 50, 50, 0.1);
+  max-width: 660px !important;
+  width: 660px;
+  background-color: #fff;
+  height: 100%;
+  margin: 0;
+}
+
+.modal-wrapper {
+  /* display: none; */
+  background-color: #fff;
+  position: inherit;
+  top: inherit;
+  width: inherit;
+  border-radius: 0 !important;
+  border: none !important;
 }
 @media (max-width: 1140px) {
-  .popup-wrapper {
-    display: none;
-    width: 100%;
+  .modal-wrapper {
+    /* display: none; */
+    width: 100% !important;
     z-index: 999999999;
-    position: absolute;
+    position: absolute !important;
+    border-radius: 0 !important;
   }
 }
-.popup-wrapper .btn-popup-close {
+.modal-wrapper .btn-popup-close {
   font-weight: normal;
   font-size: 14px;
   color: #505050;
@@ -2216,16 +2226,16 @@ label::before {
   z-index: 10;
 }
 @media (max-width: 1140px) {
-  .popup-wrapper .btn-popup-close {
+  .modal-wrapper .btn-popup-close {
     top: 15px;
     right: 15px;
   }
 }
-.popup-wrapper .btn-popup-close:hover {
+.modal-wrapper .btn-popup-close:hover {
   background-color: #fff;
   color: #05bdb8;
 }
-.popup-wrapper .p-top {
+.modal-wrapper .p-top {
   position: relative;
   padding-top: 114px;
   font-size: 20px;
@@ -2236,68 +2246,68 @@ label::before {
   padding-right: 35px;
   padding-bottom: 20px;
 }
-.popup-wrapper .p-top.p-notice {
+.modal-wrapper .p-top.p-notice {
   padding-top: 114px;
 }
 @media (max-width: 1140px) {
-  .popup-wrapper .p-top.p-notice {
+  .modal-wrapper .p-top.p-notice {
     padding-top: 24px;
     padding-left: 15px;
   }
 }
 @media (max-width: 1140px) {
-  .popup-wrapper .p-top {
+  .modal-wrapper .p-top {
     padding-top: 24px;
   }
 }
 @media (max-width: 1140px) {
-  .popup-wrapper .p-top .p-tit {
+  .modal-wrapper .p-top .p-tit {
     position: relative;
     top: 5px;
   }
 }
-.popup-wrapper .p-con {
+.modal-wrapper .p-con {
   position: relative;
   margin-top: 100px;
   padding-left: 35px;
   padding-right: 35px;
 }
 @media (max-width: 1140px) {
-  .popup-wrapper .p-con {
+  .modal-wrapper .p-con {
     padding: 0 15px;
   }
 }
-.popup-wrapper .p-con .p-con-wrap {
+.modal-wrapper .p-con .p-con-wrap {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   width: 100%;
   position: relative;
 }
-.popup-wrapper .p-con .p-con-wrap .p-file-attach {
+.modal-wrapper .p-con .p-con-wrap .p-file-attach {
   position: absolute;
   right: 0px;
   bottom: 10px;
 }
-.popup-wrapper .p-con .p-con-wrap .p-file-attach span {
+.modal-wrapper .p-con .p-con-wrap .p-file-attach span {
   font-size: 20px;
   color: #818181;
 }
-.popup-wrapper .p-con .p-con-wrap .p-td._sel {
+.modal-wrapper .p-con .p-con-wrap .p-td._sel {
   width: 30%;
 }
-.popup-wrapper .p-con .p-con-wrap .p-td._sel-100 {
+.modal-wrapper .p-con .p-con-wrap .p-td._sel-100 {
   width: 100%;
 }
-.popup-wrapper .p-con .p-con-wrap .p-td._inp {
+.modal-wrapper .p-con .p-con-wrap .p-td._inp {
   width: 70%;
   margin-left: 15px;
 }
-.popup-wrapper .p-con .p-con-wrap .p-td._inp-100 {
+.modal-wrapper .p-con .p-con-wrap .p-td._inp-100 {
   width: 100%;
   margin-left: 0;
 }
-.popup-wrapper .p-con .noti {
+.modal-wrapper .p-con .noti {
   background-color: #f6f8fa;
   border-radius: 7px;
   color: #505050;
@@ -2305,17 +2315,17 @@ label::before {
   padding: 13px 15px;
   margin-top: -85px;
 }
-.popup-wrapper .p-con .noti ._alm {
+.modal-wrapper .p-con .noti ._alm {
   color: #818181;
   margin-right: 10px;
 }
-.popup-wrapper .p-con .p-log-result {
+.modal-wrapper .p-con .p-log-result {
   margin-top: 6px;
   overflow: hidden;
   overflow-y: auto;
   height: 600px;
 }
-.popup-wrapper .p-con .p-log-result li {
+.modal-wrapper .p-con .p-log-result li {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -2327,7 +2337,7 @@ label::before {
   letter-spacing: -0.3px;
 }
 @media (max-width: 1140px) {
-  .popup-wrapper .p-con .p-log-result li {
+  .modal-wrapper .p-con .p-log-result li {
     top: 15px;
     right: 15px;
     font-size: 14px;
@@ -2335,16 +2345,16 @@ label::before {
     line-height: 20px;
   }
 }
-.popup-wrapper .p-con .p-log-result li ._log {
+.modal-wrapper .p-con .p-log-result li ._log {
   padding-left: 10px;
   width: 66%;
 }
-.popup-wrapper .p-con .p-log-result li ._date {
+.modal-wrapper .p-con .p-log-result li ._date {
   margin-left: 20px;
   width: 32%;
   padding-right: 10px;
 }
-.popup-wrapper .p-info {
+.modal-wrapper .p-info {
   border-radius: 50px;
   height: 40px;
   line-height: 40px;
@@ -2358,24 +2368,24 @@ label::before {
   align-items: center;
   padding: 0 10px;
 }
-.popup-wrapper .p-info.fir {
+.modal-wrapper .p-info.fir {
   margin-top: 100px;
 }
-.popup-wrapper .p-info ._ico {
+.modal-wrapper .p-info ._ico {
   color: #b4b4b4;
   display: inline-block;
   position: relative;
   top: 5px;
   margin-right: 5px;
 }
-.popup-wrapper .p-info ._ico span {
+.modal-wrapper .p-info ._ico span {
   font-weight: normal;
 }
-.popup-wrapper .p-info ._name,
-.popup-wrapper .p-info ._info {
+.modal-wrapper .p-info ._name,
+.modal-wrapper .p-info ._info {
   width: 100px;
 }
-.popup-wrapper textarea {
+.modal-wrapper textarea {
   border: none;
   border-bottom: 1px solid #929292;
   display: block;
@@ -2387,37 +2397,37 @@ label::before {
   padding-top: 4px;
   font-weight: 400;
 }
-.popup-wrapper textarea::-moz-placeholder {
+.modal-wrapper textarea::-moz-placeholder {
   color: #818181;
   font-size: 16px;
   font-family: "Noto Sans KR", sans-serif;
 }
-.popup-wrapper textarea:-ms-input-placeholder {
+.modal-wrapper textarea:-ms-input-placeholder {
   color: #818181;
   font-size: 16px;
   font-family: "Noto Sans KR", sans-serif;
 }
-.popup-wrapper textarea::placeholder {
+.modal-wrapper textarea::placeholder {
   color: #818181;
   font-size: 16px;
   font-family: "Noto Sans KR", sans-serif;
 }
-.popup-wrapper textarea:focus::-moz-placeholder {
+.modal-wrapper textarea:focus::-moz-placeholder {
   color: transparent !important;
 }
-.popup-wrapper textarea:focus:-ms-input-placeholder {
+.modal-wrapper textarea:focus:-ms-input-placeholder {
   color: transparent !important;
 }
-.popup-wrapper textarea:focus::placeholder {
+.modal-wrapper textarea:focus::placeholder {
   color: transparent !important;
 }
-.popup-wrapper textarea:focus {
+.modal-wrapper textarea:focus {
   outline: none;
   border-bottom: 1px solid #05bdb8;
 }
-.popup-wrapper select {
+.modal-wrapper select {
   border: none;
-  border-bottom: 1px solid #929292;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
   display: block;
   width: 100%;
   font-size: 16px;
@@ -2426,38 +2436,39 @@ label::before {
   padding-left: 8px;
   padding-top: 4px;
   font-weight: 400;
+  border-radius: 0 !important;
 }
-.popup-wrapper select::-moz-placeholder {
-  color: #818181;
+.modal-wrapper select::-moz-placeholder {
+  color: rgba(0,0,0,0.12);
   font-size: 16px;
   font-family: "Noto Sans KR", sans-serif;
 }
-.popup-wrapper select:-ms-input-placeholder {
-  color: #818181;
+.modal-wrapper select:-ms-input-placeholder {
+  color: rgba(0,0,0,0.12);
   font-size: 16px;
   font-family: "Noto Sans KR", sans-serif;
 }
-.popup-wrapper select::placeholder {
-  color: #818181;
+.modal-wrapper select::placeholder {
+  color: #rgba(0,0,0,0.12);
   font-size: 16px;
   font-family: "Noto Sans KR", sans-serif;
 }
-.popup-wrapper select:focus::-moz-placeholder {
+.modal-wrapper select:focus::-moz-placeholder {
   color: transparent !important;
 }
-.popup-wrapper select:focus:-ms-input-placeholder {
+.modal-wrapper select:focus:-ms-input-placeholder {
   color: transparent !important;
 }
-.popup-wrapper select:focus::placeholder {
+.modal-wrapper select:focus::placeholder {
   color: transparent !important;
 }
-.popup-wrapper select:focus {
+.modal-wrapper select:focus {
   color: #818181;
   border-bottom: 1px solid #05bdb8;
 }
-.popup-wrapper input {
+.modal-wrapper input {
   border: none;
-  border-bottom: 1px solid #929292;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
   display: block;
   width: 100%;
   font-size: 16px;
@@ -2466,32 +2477,33 @@ label::before {
   padding-left: 8px;
   padding-top: 4px;
   font-weight: 400;
+  border-radius: 0 !important;
 }
-.popup-wrapper input::-moz-placeholder {
-  color: #818181;
+.modal-wrapper input::-moz-placeholder {
+  color: rgba(0,0,0,0.12);
   font-size: 16px;
   font-family: "Noto Sans KR", sans-serif;
 }
-.popup-wrapper input:-ms-input-placeholder {
-  color: #818181;
+.modal-wrapper input:-ms-input-placeholder {
+  color: rgba(0,0,0,0.12);
   font-size: 16px;
   font-family: "Noto Sans KR", sans-serif;
 }
-.popup-wrapper input::placeholder {
-  color: #818181;
+.modal-wrapper input::placeholder {
+  color: rgba(0,0,0,0.12);
   font-size: 16px;
   font-family: "Noto Sans KR", sans-serif;
 }
-.popup-wrapper input:focus::-moz-placeholder {
+.modal-wrapper input:focus::-moz-placeholder {
   color: transparent !important;
 }
-.popup-wrapper input:focus:-ms-input-placeholder {
+.modal-wrapper input:focus:-ms-input-placeholder {
   color: transparent !important;
 }
-.popup-wrapper input:focus::placeholder {
+.modal-wrapper input:focus::placeholder {
   color: transparent !important;
 }
-.popup-wrapper input:focus {
+.modal-wrapper input:focus {
   border-bottom: 1px solid #05bdb8;
 }
 
