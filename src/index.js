@@ -7,19 +7,17 @@ import store from 'stores';
 import history from 'stores/history';
 import reportWebVitals from './reportWebVitals';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import 'containers/layout/normalize.css';
 import 'containers/layout/common.css';
 import 'containers/layout/styles.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <Router history={history}>
-        <App />
-      </Router>
-    </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+    <Router history={history}>
+      <App />
+    </Router>
+  </Provider>,
   document.getElementById('root'),
 );
 
