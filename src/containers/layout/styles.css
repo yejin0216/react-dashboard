@@ -2472,7 +2472,7 @@ label::before {
   display: block;
   width: 100%;
   font-size: 16px;
-  color: #818181;
+  color: #818181 !important;
   height: 40px;
   padding-left: 8px;
   padding-top: 4px;
