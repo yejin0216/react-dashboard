@@ -11,4 +11,7 @@ function ContentList({ list }) {
   );
 }
 
-export default ContentList;
+export default React.memo(
+  ContentList,
+  (prevProps, nextProps) => prevProps.list === nextProps.list,
+);
