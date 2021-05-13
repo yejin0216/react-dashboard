@@ -1,5 +1,5 @@
 import * as type from 'modules/utils/dashboardsType';
-import { handleAsyncActions, reducerUtils } from './utils/asyncUtils';
+import { reducerUtils } from './utils/asyncUtils';
 
 // action
 // 기본, 성공, 실패
@@ -10,21 +10,44 @@ export const dashboardsAction = (type, payload) => {
 
 const initialState = {
   dashboards: reducerUtils.initial(),
-  dashboard: reducerUtils.initial(),
 };
 
 // reducer
 export default function dashboardReducer(state = initialState, action) {
   switch (action.type) {
+    case type.GET_DASHBOARDS:
+      return {
+        ...state,
+        dashboards: reducerUtils.loading(state.dashboards.response),
+      };
     case type.GET_DASHBOARDS_SUCCESS:
+      return {
+        ...state,
+        dashboards: reducerUtils.success(action.payload),
+      };
     case type.GET_DASHBOARDS_ERROR:
-      return handleAsyncActions(type.GET_DASHBOARDS, 'dashboards')(
-        state,
-        action,
-      );
-    case type.GET_DASHBOARD_SUCCESS:
-    case type.GET_DASHBOARD_ERROR:
-      return handleAsyncActions(type.GET_DASHBOARD, 'dashboard')(state, action);
+      return {
+        ...state,
+        dashboards: reducerUtils.error(action.error),
+      };
+    case type.POST_DASHBOARD:
+      return {
+        ...state,
+        dashboards: reducerUtils.loading(state.dashboards.response),
+      };
+    case type.POST_DASHBOARD_SUCCESS:
+      return {
+        ...state,
+        dashboards: reducerUtils.success([
+          action.payload,
+          ...state.dashboards.response,
+        ]),
+      };
+    case type.POST_DASHBOARD_ERROR:
+      return {
+        ...state,
+        dashboards: reducerUtils.error(action.error),
+      };
     default:
       return state;
   }

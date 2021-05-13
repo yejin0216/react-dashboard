@@ -13,18 +13,18 @@ function* getDashboardsSaga({ payload }) {
   }
 }
 
-// 대시보드 조회
-function* getDashboardSaga({ payload }) {
+// 신규 대시보드 등록
+function* postDashboardSaga({ payload }) {
   try {
-    const { data } = yield call(api.getDashboard, payload);
-    yield put(actions.dashboardsAction(type.GET_DASHBOARD_SUCCESS, data));
+    const { data } = yield call(api.saveDashboard, payload);
+    yield put(actions.dashboardsAction(type.POST_DASHBOARD_SUCCESS, data));
   } catch (e) {
-    yield put(actions.dashboardsAction(type.GET_DASHBOARD_ERROR, e));
+    yield put(actions.dashboardsAction(type.POST_DASHBOARD_ERROR, e));
   }
 }
 
 // 액션이 디스패치되면 실행된다.
 export default function* dashboardSaga() {
   yield takeEvery(type.GET_DASHBOARDS, getDashboardsSaga);
-  yield takeEvery(type.GET_DASHBOARD, getDashboardSaga);
+  yield takeEvery(type.POST_DASHBOARD, postDashboardSaga);
 }
