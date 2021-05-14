@@ -19,7 +19,7 @@ function DashboardsPage() {
   // 대시보드 목록 조회 요청
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(dashboardsAction(type.GET_DASHBOARDS, 'delYn=N'));
+    dispatch(dashboardsAction(type.GET_DASHBOARDS, 'deleted=N'));
   }, []);
 
   // 대시보드 목록 세팅
@@ -27,41 +27,67 @@ function DashboardsPage() {
     return state.dashboards.dashboards.response || [];
   }, shallowEqual);
 
-  // 모달 toggle 상태
-  const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
-
-  // 모달 입력값 상태 정의
-  const [name, setName] = useState('');
-  const [cats, setCats] = useState('');
+  // 모달 입력값 수정
+  const [item, setItem] = useState({
+    id: '',
+    name: '',
+    categoryType: '',
+    connectionType: 'NOCYCLE',
+  });
 
   // 모달 입력값 상태 수정
   const updateName = e => {
-    setName(e.target.value);
+    const newItem = { ...item };
+    newItem.name = e.target.value;
+    setItem(newItem);
   };
   const updateCategory = e => {
-    setCats(e.target.value);
+    const newItem = { ...item };
+    newItem.categoryType = e.target.value;
+    setItem(newItem);
   };
 
-  // 모달 입력값 저장
-  const saveContents = () => {
-    dispatch(
-      dashboardsAction(type.POST_DASHBOARD, {
-        name,
-        categoryType: cats,
+  // 모달 toggle 상태
+  const [modal, setModal] = useState(false);
+
+  // 모달 출력
+  const toggle = (e, selectedId) => {
+    // 수정하기 위해 모달을 열 경우에만 출력된다.
+    if (
+      !modal &&
+      selectedId !== 'undefined' &&
+      typeof selectedId !== 'undefined'
+    ) {
+      setItem(
+        list.filter(data => {
+          return data.id === selectedId;
+        })[0],
+      );
+    } else {
+      setItem({
+        id: '',
+        name: '',
+        categoryType: '',
         connectionType: 'NOCYCLE',
-      }),
-    );
+      });
+    }
+    setModal(!modal);
+  };
+
+  // 모달 입력값 저장, 수정
+  const saveContents = () => {
+    if (item.id) {
+      dispatch(dashboardsAction(type.PUT_DASHBOARD, item));
+    } else {
+      dispatch(dashboardsAction(type.POST_DASHBOARD, item));
+    }
+    setModal(false); // 모달 close
   };
   // 모달 입력값 삭제
   const deleteContents = () => {
-    dispatch(
-      dashboardsAction(type.POST_DASHBOARD, {
-        name,
-        categoryType: cats,
-        connectionType: 'NOCYCLE',
-      }),
-    );
+    dispatch(dashboardsAction(type.DELETE_DASHBOARD, item.id));
+    setItem({ id: '', name: '', theme: '' });
+    setModal(false); // 모달 close
   };
 
   // 카테고리 목록 조회
@@ -73,7 +99,7 @@ function DashboardsPage() {
         <AddButton title={buttonTitle} onClick={toggle} />
       </ContentAreaTop>
       <ContentArea>
-        <ContentList list={list} />
+        <ContentList list={list} onClick={toggle} />
       </ContentArea>
       <CustomModal
         isOpen={modal}
@@ -89,14 +115,15 @@ function DashboardsPage() {
               type="select"
               name="select"
               id="theme"
+              value={item.categoryType}
               onChange={updateCategory}
             >
               <option>선택</option>
               <IfFulfilled state={categories}>
                 {data =>
-                  data.data.map(item => (
-                    <option key={item.code} value={item.code}>
-                      {item.label}
+                  data.data.map(theme => (
+                    <option key={theme.code} value={theme.code}>
+                      {theme.label}
                     </option>
                   ))
                 }
@@ -109,6 +136,7 @@ function DashboardsPage() {
               type="text"
               name="name"
               id="name"
+              value={item.name}
               placeholder="대시보드 이름"
               onChange={updateName}
             />

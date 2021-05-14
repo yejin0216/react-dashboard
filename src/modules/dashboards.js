@@ -48,6 +48,45 @@ export default function dashboardReducer(state = initialState, action) {
         ...state,
         dashboards: reducerUtils.error(action.error),
       };
+    case type.PUT_DASHBOARD:
+      return {
+        ...state,
+        dashboards: reducerUtils.loading(state.dashboards.response),
+      };
+    case type.PUT_DASHBOARD_SUCCESS:
+      return {
+        ...state,
+        dashboards: reducerUtils.success([
+          action.payload,
+          ...[...state.dashboards.response].filter(
+            data => data.id !== action.payload.id,
+          ),
+        ]),
+      };
+    case type.PUT_DASHBOARD_ERROR:
+      return {
+        ...state,
+        dashboards: reducerUtils.error(action.error),
+      };
+    case type.DELETE_DASHBOARD:
+      return {
+        ...state,
+        dashboards: reducerUtils.loading(state.dashboards.response),
+      };
+    case type.DELETE_DASHBOARD_SUCCESS:
+      return {
+        ...state,
+        dashboards: reducerUtils.success(
+          [...state.dashboards.response].filter(
+            data => data.id !== action.payload.id,
+          ),
+        ),
+      };
+    case type.DELETE_DASHBOARD_ERROR:
+      return {
+        ...state,
+        dashboards: reducerUtils.error(action.error),
+      };
     default:
       return state;
   }

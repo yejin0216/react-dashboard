@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import ViewDetailButton from 'components/buttons/ViewDetailButton';
 import { UncontrolledTooltip } from 'reactstrap';
 
-function ContentListItem({ item }) {
+function ContentListItem({ item, onClick }) {
   const itemRef = useRef(null);
   return (
     <>
@@ -22,7 +22,7 @@ function ContentListItem({ item }) {
             <span />
           </div>
           <div className="btr">
-            <ViewDetailButton title="삭제" />
+            <ViewDetailButton title="수정" onClick={e => onClick(e, item.id)} />
           </div>
         </div>
       </li>

@@ -17,8 +17,8 @@ export const saveDashboard = async param => {
 };
 
 // 대시보드 수정
-export const updateDashboard = async (dashboardId, request) => {
-  return await AUTH_AXIOS.put(`${HOST_DASHBOARDS_API}/${dashboardId}`, request);
+export const updateDashboard = async request => {
+  return await AUTH_AXIOS.put(`${HOST_DASHBOARDS_API}/${request.id}`, request);
 };
 
 // 대시보드 삭제
