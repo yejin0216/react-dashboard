@@ -2840,13 +2840,13 @@ label::before {
   background: #b6b6b6;
 }
 
-.alert-box {
-  position: absolute;
+.alert {
+  position: fixed;
   top: 46px;
-  left: 0;
+  left: calc(50% - 250px);
+  width: 500px;
   border: 0px solid #ddd;
-  font-size: 12px;
-  color: #ff5500;
+  z-index: 10000;
 }
 
 .c-myinfo {
