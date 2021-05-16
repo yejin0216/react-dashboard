@@ -35,18 +35,6 @@ function DashboardsPage() {
     connectionType: 'NOCYCLE',
   });
 
-  // 모달 입력값 상태 수정
-  const updateName = e => {
-    const newItem = { ...item };
-    newItem.name = e.target.value;
-    setItem(newItem);
-  };
-  const updateCategory = e => {
-    const newItem = { ...item };
-    newItem.categoryType = e.target.value;
-    setItem(newItem);
-  };
-
   // 모달 toggle 상태
   const [modal, setModal] = useState(false);
 
@@ -116,7 +104,7 @@ function DashboardsPage() {
               name="select"
               id="theme"
               value={item.categoryType}
-              onChange={updateCategory}
+              onChange={e => setItem({ ...item, categoryType: e.target.value })}
             >
               <option>선택</option>
               <IfFulfilled state={categories}>
@@ -138,7 +126,7 @@ function DashboardsPage() {
               id="name"
               value={item.name}
               placeholder="대시보드 이름"
-              onChange={updateName}
+              onChange={e => setItem({ ...item, name: e.target.value })}
             />
           </FormGroup>
         </Form>
