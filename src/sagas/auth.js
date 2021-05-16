@@ -1,7 +1,8 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, fork, takeLatest } from 'redux-saga/effects';
 import * as authApi from 'apis/auth';
 import * as type from 'modules/utils/authType';
 import * as actions from 'modules/auth';
+import * as alerts from 'modules/alerts';
 import history from 'stores/history';
 
 // 로그인
@@ -15,7 +16,14 @@ function* loginSaga({ payload }) {
       // 로그인 실패 횟수 카운트
       // 5회 이상 실패할 경우 비밀번호를 초기화한다.
       // TODO: 메시지 처리 필요함. Alert 미작성.
-      yield put(actions.loginErrorAction('INVALID_USER'));
+      yield fork(actions.loginErrorAction(type.INVALID_USER_INFO));
+      yield fork(
+        alerts.setAlertsAction({
+          color: 'danger',
+          message: '아이디나 비밀번호가 일치하지 않습니다.',
+          visible: true,
+        }),
+      );
       localStorage.clear();
     } else {
       localStorage.setItem('access_token', data.access_token);
@@ -26,6 +34,13 @@ function* loginSaga({ payload }) {
     }
   } catch (e) {
     yield put(actions.loginErrorAction(e));
+    yield put(
+      alerts.setAlertsAction({
+        color: 'danger',
+        message: '탈퇴했거나 존재하지 않는 계정입니다.',
+        visible: true,
+      }),
+    );
     localStorage.clear();
   }
 }

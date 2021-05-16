@@ -3,10 +3,12 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import routes from 'routers';
 import PrivateRoute from 'containers/auth/PrivateRoute';
 import LoginPage from './pages/auth/LoginPage';
+import GlobalAlert from './components/alert/GlobalAlert';
 
 function App() {
   return (
     <div className="App">
+      <GlobalAlert />
       <Switch>
         {routes.map(route => {
           return (
