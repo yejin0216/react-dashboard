@@ -16,9 +16,15 @@ const initialState = {
 export default function alertReducer(state = initialState, action) {
   switch (action.type) {
     case type.SET_ALERT:
-      return action.payload;
+      return {
+        state,
+        ...action.payload
+      };
     case type.RESET_ALERT:
-      return initialState;
+      return {
+        state,
+        ...initialState
+      };
     default:
       return state;
   }

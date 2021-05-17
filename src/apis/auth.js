@@ -7,6 +7,6 @@ export const login = async (userInfo) => {
 };
 
 // 로그아웃
-export const logout = () => {
+export const clearAllItems = () => {
   localStorage.clear();
 }
