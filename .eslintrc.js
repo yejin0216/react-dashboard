@@ -9,6 +9,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 0,
     'prettier/prettier': 0,
     'no-return-await': 0,
+    'no-useless-escape': 0,
     'import/no-unresolved': 0,
     'import/prefer-default-export': 0,
     'import/no-extraneous-dependencies': 0,
