@@ -1,5 +1,6 @@
 import DashboardsPage from 'pages/dashboard/DashboardsPage';
 import DashboardPage from 'pages/dashboard/DashboardPage';
+import Bookmarks from 'pages/dashboard/Bookmarks';
 
 const routes = [
   {
@@ -21,8 +22,8 @@ const routes = [
   },
   {
     path: '/bookmarks',
-    source: DashboardsPage,
-    breadcrumbs: ['대시보드 목록', '대시보드'],
+    source: Bookmarks,
+    breadcrumbs: ['즐겨찾기', '대시보드'],
   },
   {
     path: '/guide',
