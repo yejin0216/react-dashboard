@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import logo from 'containers/layout/images/geri-logo.png';
-import loginBg from 'containers/layout/images/login/login-bg.png';
 import { loginAction } from 'modules/auth';
 
 function Login() {
@@ -21,7 +19,10 @@ function Login() {
         <div className="login">
           <div className="login-left">
             <div className="logo">
-              <img src={logo} alt="Logo" />
+              <img
+                src={`${process.env.PUBLIC_URL}/assets/images/login/geri-logo.png`}
+                alt="Logo"
+              />
             </div>
             <div className="tit">Login</div>
             <form className="login-form">
@@ -66,7 +67,10 @@ function Login() {
               <div className="t-2">Login in to your account</div>
             </div>
             <div className="illust">
-              <img src={loginBg} alt="Welcome to DashboardPro" />
+              <img
+                src={`${process.env.PUBLIC_URL}/assets/images/login/login-bg.png`}
+                alt="Welcome to DashboardPro"
+              />
             </div>
           </div>
         </div>

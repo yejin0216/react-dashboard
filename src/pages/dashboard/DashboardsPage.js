@@ -108,8 +108,8 @@ function DashboardsPage() {
             >
               <option>선택</option>
               <IfFulfilled state={categories}>
-                {data =>
-                  data.data.map(theme => (
+                {resp =>
+                  resp.data.map(theme => (
                     <option key={theme.code} value={theme.code}>
                       {theme.label}
                     </option>

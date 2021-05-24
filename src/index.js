@@ -8,9 +8,12 @@ import history from 'stores/history';
 import reportWebVitals from './reportWebVitals';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'containers/layout/normalize.css';
-import 'containers/layout/common.css';
-import 'containers/layout/styles.css';
+import 'assets/normalize.css';
+import 'assets/common.css';
+import 'assets/styles.css';
+
+const test = `${process.env.PUBLIC_URL}`;
+console.log(test);
 
 ReactDOM.render(
   <Provider store={store}>

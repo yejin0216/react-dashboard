@@ -8,13 +8,12 @@ import history from 'stores/history';
 // 로그인
 function* loginSaga({ payload }) {
   try {
-    // 로그인은 동기로 처리
-    const { data } = yield call(authApi.login, payload);
+    const { data } = yield call(authApi.login, payload); // return promise object
     const { failCount } = data;
 
     if (failCount || failCount > 0) {
       // 로그인 실패 횟수 카운트
-      // 5회 이상 실패할 경우 비밀번호를 초기화한다.
+      // TODO : 5회 이상 실패할 경우 비밀번호를 초기화한다.
       yield put(actions.loginErrorAction(type.INVALID_USER_INFO));
       yield put(
         alerts.setAlertsAction({
@@ -31,8 +30,8 @@ function* loginSaga({ payload }) {
       yield put(actions.loginSuccessAction(data));
       yield history.push('/dashboards');
     }
-  } catch (e) {
-    yield put(actions.loginErrorAction(e));
+  } catch (error) {
+    yield put(actions.loginErrorAction(error));
     yield put(
       alerts.setAlertsAction({
         color: 'danger',

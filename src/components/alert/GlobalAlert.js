@@ -12,7 +12,8 @@ function GlobalAlert() {
   const onDismiss = () => {
     dispatch(resetAlertsAction());
   };
-  setTimeout(() => dispatch(resetAlertsAction()), 3000);
+  // FIXME: timeout 수정하기
+  // setInterval(() => dispatch(resetAlertsAction()), 3000);
 
   return (
     <Alert color={alert.color} isOpen={alert.visible} toggle={onDismiss}>
