@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
-import ViewDetailButton from 'components/buttons/ViewDetailButton';
+import SmallButton from 'components/buttons/SmallButton';
 import { UncontrolledTooltip } from 'reactstrap';
 
-function ContentListItem({ item, onClick }) {
-  const itemRef = useRef(null);
+function ContentListItem({ item, action }) {
+  const itemRef = useRef();
   return (
     <>
       <li className="list-wrap" data-link="link" ref={itemRef}>
@@ -22,7 +22,11 @@ function ContentListItem({ item, onClick }) {
             <span />
           </div>
           <div className="btr">
-            <ViewDetailButton title="수정" onClick={e => onClick(e, item.id)} />
+            <SmallButton
+              title="수정"
+              type="btn-view-detail"
+              action={e => action(e, item.id)}
+            />
           </div>
         </div>
       </li>

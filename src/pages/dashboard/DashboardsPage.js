@@ -6,14 +6,14 @@ import * as type from 'modules/utils/dashboardsType';
 import ContentAreaTop from 'components/contents/ContentAreaTop';
 import ContentArea from 'components/contents/ContentArea';
 import ContentList from 'components/contents/ContentList';
-import AddButton from 'components/buttons/AddButton';
+import LargeButton from 'components/buttons/LargeButton';
 import CustomModal from 'components/modals/CustomModal';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 import { IfFulfilled, useAsync } from 'react-async';
 import { getCategories } from 'apis/common';
 
 // 버튼 이름
-const buttonTitle = '추가하기';
+const buttonName = '추가하기';
 
 function DashboardsPage() {
   // 대시보드 목록 조회 요청
@@ -28,7 +28,7 @@ function DashboardsPage() {
   }, shallowEqual);
 
   // 모달 입력값 수정
-  const [item, setItem] = useState({
+  const [content, setContents] = useState({
     id: '',
     name: '',
     categoryType: '',
@@ -46,13 +46,13 @@ function DashboardsPage() {
       selectedId !== 'undefined' &&
       typeof selectedId !== 'undefined'
     ) {
-      setItem(
+      setContents(
         list.filter(data => {
           return data.id === selectedId;
         })[0],
       );
     } else {
-      setItem({
+      setContents({
         id: '',
         name: '',
         categoryType: '',
@@ -64,17 +64,17 @@ function DashboardsPage() {
 
   // 모달 입력값 저장, 수정
   const saveContents = () => {
-    if (item.id) {
-      dispatch(dashboardsAction(type.PUT_DASHBOARD, item));
+    if (content.id) {
+      dispatch(dashboardsAction(type.PUT_DASHBOARD, content));
     } else {
-      dispatch(dashboardsAction(type.POST_DASHBOARD, item));
+      dispatch(dashboardsAction(type.POST_DASHBOARD, content));
     }
     setModal(false); // 모달 close
   };
   // 모달 입력값 삭제
   const deleteContents = () => {
-    dispatch(dashboardsAction(type.DELETE_DASHBOARD, item.id));
-    setItem({ id: '', name: '', theme: '' });
+    dispatch(dashboardsAction(type.DELETE_DASHBOARD, content.id));
+    setContents({ id: '', name: '', theme: '' });
     setModal(false); // 모달 close
   };
 
@@ -84,17 +84,17 @@ function DashboardsPage() {
   return (
     <>
       <ContentAreaTop>
-        <AddButton title={buttonTitle} onClick={toggle} />
+        <LargeButton name={buttonName} action={toggle} type="btn-add-obj" />
       </ContentAreaTop>
       <ContentArea>
-        <ContentList list={list} onClick={toggle} />
+        <ContentList list={list} action={toggle} />
       </ContentArea>
       <CustomModal
         isOpen={modal}
         toggle={toggle}
         saveContents={saveContents}
         deleteContents={deleteContents}
-        title={buttonTitle}
+        title={buttonName}
       >
         <Form>
           <FormGroup>
@@ -103,8 +103,10 @@ function DashboardsPage() {
               type="select"
               name="select"
               id="theme"
-              value={item.categoryType}
-              onChange={e => setItem({ ...item, categoryType: e.target.value })}
+              value={content.categoryType}
+              onChange={e =>
+                setContents({ ...content, categoryType: e.target.value })
+              }
             >
               <option>선택</option>
               <IfFulfilled state={categories}>
@@ -124,9 +126,9 @@ function DashboardsPage() {
               type="text"
               name="name"
               id="name"
-              value={item.name}
+              value={content.name}
               placeholder="대시보드 이름"
-              onChange={e => setItem({ ...item, name: e.target.value })}
+              onChange={e => setContents({ ...content, name: e.target.value })}
             />
           </FormGroup>
         </Form>

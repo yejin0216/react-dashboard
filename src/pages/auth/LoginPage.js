@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginAction } from 'modules/auth';
+import logo from 'assets/images/geri-logo.png';
+import loginBg from 'assets/images/login/login-bg.png';
 
 function Login() {
-  // username, password 업데이트
+  // state : 로그인 사용자 정보
   const [user, updateUser] = useState({ username: '', password: '' });
 
-  // 로그인 디스패치
+  // method : 사용자 입력 정보 업데이트
+  function changeUserInfo(flag, e) {
+    if (flag === 'username') {
+      updateUser({ ...user, username: e.target.value });
+    } else {
+      updateUser({ ...user, password: e.target.value });
+    }
+  }
+
+  // method : 로그인
   const dispatch = useDispatch();
   function login(e) {
     e.preventDefault();
@@ -19,10 +30,7 @@ function Login() {
         <div className="login">
           <div className="login-left">
             <div className="logo">
-              <img
-                src={`${process.env.PUBLIC_URL}/assets/images/login/geri-logo.png`}
-                alt="Logo"
-              />
+              <img src={logo} alt="Logo" />
             </div>
             <div className="tit">Login</div>
             <form className="login-form">
@@ -30,9 +38,7 @@ function Login() {
                 <input
                   type="text"
                   className="input-login id"
-                  onChange={e =>
-                    updateUser({ ...user, username: e.target.value })
-                  }
+                  onChange={e => changeUserInfo('username', e)}
                   placeholder="ID"
                 />
               </div>
@@ -40,9 +46,7 @@ function Login() {
                 <input
                   type="password"
                   className="input-login pd"
-                  onChange={e =>
-                    updateUser({ ...user, password: e.target.value })
-                  }
+                  onChange={e => changeUserInfo('password', e)}
                   placeholder="Password"
                 />
               </div>
@@ -67,10 +71,7 @@ function Login() {
               <div className="t-2">Login in to your account</div>
             </div>
             <div className="illust">
-              <img
-                src={`${process.env.PUBLIC_URL}/assets/images/login/login-bg.png`}
-                alt="Welcome to DashboardPro"
-              />
+              <img src={loginBg} alt="Welcome to DashboardPro" />
             </div>
           </div>
         </div>
