@@ -12,9 +12,6 @@ import 'assets/normalize.css';
 import 'assets/common.css';
 import 'assets/styles.css';
 
-const test = `${process.env.PUBLIC_URL}`;
-console.log(test);
-
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
