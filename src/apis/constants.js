@@ -9,6 +9,7 @@ export const HOST_EVENT_WIDGETS_API = '/v2/dashboard/events';
 
 /* Open Service HOST */
 export const HOST_OPENSERVICE_API = '/v2/opensvc';
+export const HOST_OPENSERVICE_DEVICE_API = '/v2/opensvc/devices';
 
 /* IoTMakers Platform HOST */
 export const HOST_DEVICE_API = '/v2/devices';
