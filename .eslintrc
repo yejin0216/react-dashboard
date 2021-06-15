@@ -1,0 +1,34 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "react/jsx-filename-extension": [0],
+    "react/jsx-props-no-spreading": 0,
+    "react/prop-types": 0,
+    "prettier/prettier": 0,
+    "no-return-await": 0,
+    "no-useless-escape": 0,
+    "import/no-unresolved": 0,
+    "import/prefer-default-export": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-anonymous-default-export": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": 0
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:jsdoc/recommended",
+    "plugin:markdown/recommended",
+    "react-app",
+    "react-app/jest"
+  ]
+}
